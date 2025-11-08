@@ -71,6 +71,28 @@
     background-color: #001f4d;
     text-align: center;
   }
+  .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.header-left, .header-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Ajuste das imagens */
+.header-img {
+  max-height: 120px;   /* ✅ altura máxima igual ao cabeçalho */
+  width: auto;         /* mantém proporção */
+  height: auto;        /* reduz proporcionalmente */
+  object-fit: contain; /* evita deformações */
+  border-radius: 8px;
+}
+
 
   /* Botão voltar ao topo */
   #topBtn {
@@ -99,18 +121,21 @@
 
 <header id="topo">
 
-  <!-- FOTO ESQUERDA -->
-  <img src="rafaeldemello.jpg" alt="Foto Esquerda" class="header-photo">
-
-  <!-- TEXTO CENTRAL -->
+<div class="header">
+  <div class="header-left">
+    <img src="rafaeldemello.jpg" alt="Foto esquerda" class="header-img">
+  </div>
+  
   <div class="header-center">
   <h1>Rafael Maiani de Mello</h1>
   <h2>Software Engieering</h2>
   <p>Associate Professor, UFRJ</p>  
   </div>
 
-  <!-- FOTO DIREITA -->
-  <img src="logoufrj.jpg" alt="Foto Direita" class="header-photo">
+  <div class="header-right">
+    <img src="logoufrj.png" alt="Foto direita" class="header-img">
+  </div   
+</div>
 
 </header>
 
