@@ -6,6 +6,42 @@
 <title>Rafael de Mello - Software Engineering</title>
 
 <style>
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
+  }
+
+  .link-item {
+    background-color: #001f4d;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .link-item:hover {
+    transform: scale(1.05);
+    background-color: #003b8a;
+  }
+
+  .link-item img {
+    width: 100%;
+    max-width: 90px;
+    height: auto;
+    margin-bottom: 8px;
+    background-color: white; /* preserva fundo branco */
+    border-radius: 6px;
+    padding: 4px;
+  }
+
+  .link-item span {
+    color: #f5f5f5;
+    font-size: 0.9em;
+  }
+
   html {
     scroll-behavior: smooth;
   }
