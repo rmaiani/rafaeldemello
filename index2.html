@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafael de Mello - Software Engineering</title>
+
+<!-- Fontes inspiradas no slide: títulos condensados, corpo limpo e legível. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --teal: #00a889;
+    --teal-dark: #008f78;
+    --navy: #062d49;
+    --navy-deep: #031e31;
+    --yellow: #ffbf00;
+    --paper: #f7faf9;
+    --white: #ffffff;
+    --text: #173247;
+    --muted: #60727e;
+    --line: #dbe7e3;
+    --shadow: 0 12px 35px rgba(6, 45, 73, 0.09);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--text);
+    font-family: "Inter", Arial, sans-serif;
+    line-height: 1.65;
+  }
+
+  a {
+    color: var(--teal-dark);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* ---------- HERO ---------- */
+  .site-header {
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 9px;
+    background: var(--navy);
+  }
+
+  .site-header::after {
+    content: "";
+    position: absolute;
+    left: 9px;
+    right: 0;
+    bottom: 0;
+    height: 7px;
+    background: var(--teal);
+  }
+
+  .hero {
+    width: min(1240px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: 290px;
+    display: grid;
+    grid-template-columns: 180px 1fr 190px;
+    align-items: center;
+    gap: 34px;
+    padding: 42px 0 50px;
+  }
+
+  .hero-photo {
+    width: 168px;
+    height: 168px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 7px solid var(--navy);
+    box-shadow: var(--shadow);
+    background: var(--white);
+  }
+
+  .hero-copy {
+    position: relative;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 10px;
+    color: var(--teal-dark);
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 9px;
+    height: 9px;
+    background: var(--yellow);
+    transform: rotate(45deg);
+  }
+
+  h1, h2, h3 {
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  }
+
+  .hero h1 {
+    margin: 0;
+    color: var(--teal);
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    line-height: .98;
+    font-weight: 700;
+    letter-spacing: -.02em;
+  }
+
+  .hero-role {
+    margin: 10px 0 12px;
+    color: var(--navy);
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .hero-meta {
+    margin: 4px 0;
+    color: var(--text);
+    font-size: 1rem;
+  }
+
+  .hero-topics {
+    max-width: 820px;
+    margin-top: 13px;
+    color: var(--muted);
+    font-size: .94rem;
+    line-height: 1.55;
+  }
+
+  .hero-logo {
+    justify-self: end;
+    max-width: 180px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    padding: 12px;
+    background: var(--white);
+    border-radius: 12px;
+  }
+
+  /* ---------- LAYOUT ---------- */
+  main {
+    width: min(1240px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 38px 0 60px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.75fr) minmax(300px, .85fr);
+    gap: 28px;
+    align-items: start;
+  }
+
+  .main-column {
+    display: grid;
+    gap: 24px;
+  }
+
+  .side-column {
+    display: grid;
+    gap: 24px;
+    position: sticky;
+    top: 22px;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 24px 15px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .card-header::before {
+    content: "";
+    width: 6px;
+    height: 28px;
+    flex: 0 0 6px;
+    background: var(--yellow);
+    border-radius: 2px;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--teal);
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .card-body {
+    padding: 22px 24px 26px;
+  }
+
+  .about-text {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  /* ---------- NEWS ---------- */
+  .news-month {
+    position: relative;
+    margin: 0 0 26px;
+    padding-left: 18px;
+    border-left: 2px solid var(--line);
+  }
+
+  .news-month:last-child {
+    margin-bottom: 0;
+  }
+
+  .news-month::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    background: var(--yellow);
+    transform: rotate(45deg);
+  }
+
+  .news-month h3 {
+    margin: 0 0 12px;
+    color: var(--navy);
+    font-size: 1.55rem;
+    line-height: 1;
+  }
+
+  .news-item {
+    margin-bottom: 18px;
+  }
+
+  .news-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .news-title,
+  .news-text {
+    margin: 0 0 8px;
+  }
+
+  .news-title {
+    color: var(--navy);
+    font-size: .98rem;
+  }
+
+  .news-text {
+    color: var(--text);
+    font-size: .94rem;
+  }
+
+  /* ---------- PUBLICATIONS ---------- */
+  .publication {
+    position: relative;
+    padding: 0 0 17px 22px;
+    margin: 0 0 17px;
+    border-bottom: 1px solid var(--line);
+    font-size: .93rem;
+  }
+
+  .publication::before {
+    content: "◆";
+    position: absolute;
+    left: 0;
+    top: 1px;
+    color: var(--yellow);
+    font-size: .65rem;
+  }
+
+  .publication:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  /* ---------- SIDE ---------- */
+  .side-card .card-body {
+    padding: 20px;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .link-item {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 148px;
+    padding: 14px 10px;
+    text-align: center;
+    background: var(--navy);
+    border-radius: 12px;
+    border-bottom: 4px solid var(--teal);
+    transition: transform .2s ease, background .2s ease;
+  }
+
+  .link-item:hover {
+    transform: translateY(-3px);
+    background: var(--navy-deep);
+    text-decoration: none;
+  }
+
+  .link-item img {
+    width: 86px;
+    height: 64px;
+    object-fit: contain;
+    background: var(--white);
+    border-radius: 7px;
+    padding: 4px;
+  }
+
+  .link-item span {
+    color: var(--white);
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    font-size: 1rem;
+    line-height: 1.1;
+    font-weight: 500;
+  }
+
+  .person-list,
+  .award-list,
+  .quick-links {
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .person-list {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .person-list li {
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: .93rem;
+  }
+
+  .person-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .award-list li,
+  .quick-links li {
+    margin-bottom: 8px;
+    font-size: .92rem;
+  }
+
+  .award-list li::marker {
+    color: var(--yellow);
+  }
+
+  /* ---------- FOOTER / TOP ---------- */
+  footer {
+    position: relative;
+    padding: 24px;
+    background: var(--navy);
+    color: var(--white);
+    text-align: center;
+    border-top: 7px solid var(--teal);
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    font-size: 1.05rem;
+  }
+
+  footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -7px;
+    width: 34px;
+    height: 7px;
+    background: var(--yellow);
+  }
+
+  #topBtn {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--yellow);
+    color: var(--navy);
+    font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(6, 45, 73, .2);
+    transition: transform .2s ease;
+  }
+
+  #topBtn:hover {
+    transform: translateY(-3px);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px) {
+    .hero {
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+    }
+
+    .hero-logo {
+      grid-column: 1 / -1;
+      justify-self: start;
+      max-height: 90px;
+      max-width: 130px;
+    }
+
+    .hero-photo {
+      width: 130px;
+      height: 130px;
+    }
+
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .side-column {
+      position: static;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero,
+    main {
+      width: min(100% - 28px, 1240px);
+    }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 30px 0 42px;
+    }
+
+    .hero-photo {
+      width: 120px;
+      height: 120px;
+    }
+
+    .hero-logo {
+      grid-column: auto;
+    }
+
+    .card-header {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    .links-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    #topBtn {
+      right: 16px;
+      bottom: 16px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<header id="topo" class="site-header">
+  <div class="hero">
+    <div>
+      <img src="rafaeldemello.jpg" alt="Foto esquerda" class="hero-photo">
+    </div>
+
+    <div class="hero-copy">
+      <p class="eyebrow">Software Engineering</p>
+      <h1>Rafael Maiani de Mello, DSc.</h1>
+      <p class="hero-role">Software Engineering</p>
+      <p class="hero-meta">Associate Professor, UFRJ</p>
+      <p class="hero-meta">Leader of the Iter Resarch Group</p>
+      <p class="hero-topics"><i></i>AI for SE - Software Quality - Software Maintenance - Empirical SE - Sociothecnical Aspects of SE</i></p>
+    </div>
+
+    <div>
+      <img src="logoufrj.png" style="background-color:white;" alt="Foto direita" class="hero-logo">
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="layout">
+
+    <div class="main-column">
+
+      <section class="card">
+        <div class="card-header"><h2>About</h2></div>
+        <div class="card-body">
+          <p class="about-text">Hi! I’m Professor Rafael de Mello, a Brazilian Software Engineering researcher and practitioner. I have over 20 years of industry experience, mainly in the financial and banking sectors. A skeptical surfer in the sea of empiricism, I’m currently trying to ride the Generative AI wave on a surfboard called evidence.
+          In recent years, my work has focused on bridging the gap between Software Engineering research and practice. My research group (Iter) is a pioneer in applying social psychology theories—such as social representations and social identity—to Software Engineering. My publications include award-winning papers in venues such as ICSE, FSE, and ESEM. I also recognize myself as a recovering “Reviewer 2,” striving to provide constructive and empathetic feedback. :)</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header"><h2>News</h2></div>
+        <div class="card-body">
+
+          <div class="news-month">
+            <h3>September 2026</h3>
+
+            <div class="news-item">
+              <p class="news-title"><strong>Best CTD-ES Doctoral Thesis!</strong></p>
+              <p class="news-text">
+                The Doctoral Thesis of João Lucas Correa, titled
+                <strong>"Exploring Conversational Agents for Developer Guidance on Software Dependability Issues"</strong>,
+                co-supervised with prof. Alessandro Garcia (PUC-Rio), received the
+                <strong>Best Doctoral Thesis</strong> recognition at <strong>CBSOFT/CTD-ES 2026</strong>.
+              </p>
+            </div>
+
+            <div class="news-item">
+              <p class="news-title"><strong>Distinguished Paper at ISE 2026</strong></p>
+              <p class="news-text">
+                The paper presented at <strong>CBSOFT/ISE 2026</strong>, entitled
+                <strong>"Uma Abordagem Multiagente para Geração de Requisitos com Base em Personas"</strong>,
+                was honored as a <strong>Distinguished Paper</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="news-month">
+            <h3>April 2026</h3>
+
+            <div class="news-item">
+              <p class="news-title"><strong>New Papers Released!</strong></p>
+              <p class="news-text">
+                Interested in applying Focus Groups in your research? Take a look at our paper published in IST:
+                <a href="https://www.sciencedirect.com/science/article/pii/S0950584926001254">
+                  <em>Design, execution, and contextual factors shaping the benefits and drawbacks of focus groups in software engineering</em>
+                </a>.
+              </p>
+
+              <p class="news-text">
+                Looking for evidence-based GenAI solutions for software quality? Take a look at our paper published in SQJ:
+                <a href="">
+                  <em>Generative AI solutions for software quality: Assessing industrial readiness</em>
+                </a>.
+              </p>
+            </div>
+          </div>
+
+          <div class="news-month">
+            <h3>November 2025</h3>
+
+            <div class="news-item">
+              <p class="news-title"><strong>Distinguished Paper at SBQS 2025</strong></p>
+              <p class="news-text">
+                The paper authored by André Gheventer and Patrícia Gurgel,
+                <em>"Aprendizados do Uso de IA Generativa na Engenharia e Garantia de Qualidade de Sistemas Web para Saúde"</em>,
+                received a <strong>Distinguished Paper</strong> award at <strong>SBQS 2025</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="news-month">
+            <h3>October 2025</h3>
+
+            <div class="news-item">
+              <p class="news-title"><strong>Paper Accepted at ICSE 2026 Research Track</strong></p>
+              <p class="news-text">
+                The paper
+                <em>"A Comparison of Conversational Models and Humans in Answering Technical Questions: the Firefox Case"</em>,
+                stemming from João Lucas Corrêa’s doctoral research, has been accepted to
+                <strong>
+                  <a href="https://conf.researchr.org/track/icse-2026/icse-2026-research-track#">
+                    ICSE 2026 Research Track
+                  </a>
+                </strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="news-month">
+            <h3>September 2025</h3>
+
+            <div class="news-item">
+              <p class="news-title"><strong>Keynote at ISSRE 2025</strong></p>
+              <p class="news-text">
+                Honored to serve as
+                <a href="https://hfsdworkshop.github.io/keynote.html">Keynote Speaker</a>
+                at the <strong>2nd International Workshop on Human Factors for Software Dependability (ISSRE 2025)</strong>,
+                presenting the keynote
+                <em>"Hey ChatGPT, are you ready to support qualitative research in software engineering?"</em>
+              </p>
+            </div>
+
+            <div class="news-item">
+              <p class="news-title"><strong>Distinguished Paper at CBSOFT/SAST 2025</strong></p>
+              <p class="news-text">
+                The paper
+                <em>"A Journey of Functional Test Evolution in the Public Sector"</em>,
+                presented at
+                <a href="https://sol.sbc.org.br/index.php/sast/article/view/36895">
+                  <strong>CBSOFT/SAST 2025</strong>
+                </a>,
+                was recognized as a <strong>Distinguished Paper</strong>.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header"><h2>Recent Publications</h2></div>
+        <div class="card-body">
+
+          <div class="publication">
+            Correia, J., Coutinho, D., Castelluccio, M., Barbosa, C., de Mello, R., Sarma, A., ... & Steinmacher, I. (2025). A Comparison of Conversational Models and Humans in Answering Technical Questions: the Firefox Case. arXiv preprint arXiv:2510.21933.
+          </div>
+
+          <div class="publication">
+            Cerqueira, D. A., de Mello, R. M., da Costa, J. S., & Travassos, G. H. (2025). Experimental evaluation of a checklist-based inspection technique to verify the compliance of software systems with the Brazilian General Data Protection Law. <i>Empirical Software Engineering, 30</i>(5), 122. Springer US.
+          </div>
+
+          <div class="publication">
+            de Souza, B. P., Motta, R. C., da Costa, J. S., Nunes, E., Pinto, G. R. B., & de Mello, R. M. (2025, September). A Journey of Functional Test Evolution in the Public Sector. In Simpósio Brasileiro de Testes de Software Sistemático e Automatizado (SAST) (pp. 147-149). SBC.
+          </div>
+
+          <div class="publication">
+            de Souza, A. N., dos Santos, F., dos Santos, L., Belém, P. H. A., da Silva, S. T. F., Vivacqua, A. S., & de Mello, R. (2024). Investigating the Perception of Feedback in Software Development Teams: An Initial Study. iSys-Brazilian Journal of Information Systems, 17(1), 10-1.
+          </div>
+
+          <div class="publication">
+            Lima, R., Souza, J., Fonseca, B., Teixeira, L., Mello, R., Ribeiro, M., Gheyi, R., & Garcia, A. (2024). Investigating the social representations of harmful code. <i>Journal of Software Engineering Research and Development, 12</i>(1), 4–1.
+          </div>
+
+          <div class="publication">
+            Uchôa, A., de Mello, R., Souza, J., Teixeira, L., Fonseca, B., & Garcia, A. (2024). Towards effective gamification of existing systems: method and experience report. Software Quality Journal, 32(4), 1683-1716.
+          </div>
+
+          <div class="publication">
+            Bibiano, A. C., Coutinho, D., Uchôa, A., Assunçao, W. K., Garcia, A., de Mello, R., ... & Ribeiro, M. (2024, October). Enhancing Recommendations of Composite Refactorings based on the Practice. In 2024 IEEE International Conference on Source Code Analysis and Manipulation (SCAM) (pp. 83-93). IEEE.
+          </div>
+
+          <div class="publication">
+            Correia, J., Coutinho, D., Garcia, A., de Mello, R., Barbosa, C., Oliveira, A., ... & Arriel, J. (2024, October). On the Investigation of Exception Pull Request Characteristics: Exploring the Apache Ecosystem. In 2024 IEEE International Conference on Source Code Analysis and Manipulation (SCAM) (pp. 143-153). IEEE.
+          </div>
+
+          <div class="publication">
+            Esteves, A. C., de Moraes, L. C., & de Mello, R. M. (2024, July). Investigando a Prática de Salas de Guerra na Solução de Problemas Críticos em Sistemas de Software. In Workshop sobre Aspectos Sociais, Humanos e Econômicos de Software (WASHES) (pp. 35-45). SBC.
+          </div>
+
+          <div class="publication">
+            Galeno, L., Mota, W., & de Mello, R. (2024, July). Investigating the Participation of Female Software Developers in Retrospective Meetings. In Workshop sobre Aspectos Sociais, Humanos e Econômicos de Software (WASHES) (pp. 46-57). SBC.
+          </div>
+
+          <div class="publication">
+            Zandoná, D., Kockelke, F., & de Mello, R. (2024, July). Investigating Computer Science Students’ Identification with the Course and Their Perceptions of the Content Taught. In Workshop sobre Educação em Computação (WEI) (pp. 646-657). SBC.
+          </div>
+
+          <div class="publication">
+            Barroso, B., da Silva, L., & de Mello, R. (2024, July). Caracterizando Condutores de Carga Cognitiva na Prática de Testes Unitários. In Workshop sobre Aspectos Sociais, Humanos e Econômicos de Software (WASHES) (pp. 70-81). SBC.
+          </div>
+
+          <div class="publication">
+            Oliveira, A., Correia, J., Assunção, W. K., Pereira, J. A., de Mello, R., Coutinho, D., ... & Garcia, A. (2024). Understanding developers’ discussions and perceptions on non-functional requirements: The case of the Spring ecosystem. Proceedings of the ACM on Software Engineering, 1(FSE), 517-538.
+          </div>
+
+          <div class="publication">
+            de Paiva, B. D., Esteves, A. C., de Mello, R. M., & Travassos, G. H. (2024, May). Resultados Iniciais de uma Rapid Review sobre Tecnologias de Apoio à Engenharia de Sistemas de Software Quântico. In Congresso Ibero-Americano em Engenharia de Software (CIbSE) (pp. 372-379). SBC.
+          </div>
+
+          <div class="publication">
+            Belém, P. H. A., Glória, J. P. B., de Souza, A. N., Barizon, C., de Mello, R. M., & Vivacqua, A. S. (2024, April). A colaboração em reuniões remotas: uma análise sobre o uso da câmera e a produtividade. In Simpósio Brasileiro de Sistemas Colaborativos (SBSC) (pp. 124-137). SBC.
+          </div>
+
+          <div class="publication">
+            Lima, R., Souza, J., Fonseca, B., Teixeira, L., Mello, R., Ribeiro, M., ... & Garcia, A. (2024). Investigating the Social Representations of Harmful Code. Journal of Software Engineering Research and Development, 12(1), 4-1.
+          </div>
+
+          <div class="publication">
+            Carvalho, L., Colanzi, T. E., Assuncao, W. K., Garcia, A., Pereira, J. A., Kalinowski, M., ... & Lucena, C. (2024). On the Usefulness of Automatically Generated Microservice Architectures. IEEE Transactions on Software Engineering, 50(03), 651-667.
+          </div>
+
+          <div class="publication">
+            Bastos, J. A. D., de Mello, R. M., & Garcia, A. F. (2024). Colloquy: Evidence-Based Method for Supporting the Design of Conversational APIs. Journal of Software Engineering Research and Development, 12(1), 18-1.
+          </div>
+
+          <div class="publication">
+            Santos, L., Santos, F., Parreira, R., & de Mello, R. (2023, December). Investigating the developer’s perceptions of unit testing and its practice. In Escola Regional de Engenharia de Software (ERES) (pp. 238-247). SBC.
+          </div>
+
+          <div class="publication">
+            Belém, P., De Mello, R., Vivacqua, A. S., & Neves De Souza, A. (2023, September). Investigating the cognitive load drivers of software evolution activities. In Proceedings of the XXXVII Brazilian Symposium on Software Engineering (pp. 342-347).
+          </div>
+
+          <div class="publication">
+            Bastos, J., Mello, R., & Garcia, A. (2023, September). On the Support for Designing a Conversational Software API: An Action Research Study: An Action Research Study. In Simpósio Brasileiro de Engenharia de Software (SBES) (pp. 57-66). SBC.
+          </div>
+
+          <div class="publication">
+            de Souza, A., dos Santos, F., dos Santos, L., Belém, P., da Silva, S., Vivacqua, A., & de Mello, R. (2023, August). Investigando a percepção de feedback em times de desenvolvimento de software: Um estudo inicial. In Workshop sobre Aspectos Sociais, Humanos e Econômicos de Software (WASHES) (pp. 91-100). SBC.
+          </div>
+
+          <div class="publication">
+            Cerqueira, D. A., de Mello, R. M., & Travassos, G. H. (2023, April). Um checklist para inspeção de privacidade e proteção de dados pessoais em artefatos de software. In Congresso Ibero-Americano em Engenharia de Software (CIbSE) (pp. 206-213). SBC.
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <aside class="side-column">
+
+      <section class="card side-card">
+        <div class="card-header"><h2>PC Member (2026)</h2></div>
+        <div class="card-body">
+          <div class="links-grid">
+
+            <a class="link-item" href="https://conf.researchr.org/track/icse-2026/icse-2026-nier" target="_blank">
+              <img src="icse2026.jpg" alt="">
+              <span>ICSE 2026– NIER</span>
+            </a>
+
+            <a class="link-item" href="https://conf.researchr.org/track/eseiw-2026/eseiw-2026-esem---technical-track" target="_blank">
+              <img src="ESEIW2026.png" alt="">
+              <span>ESEM 2026- Technical+Industry</span>
+            </a>
+
+            <a class="link-item" href="https://conf.researchr.org/track/scam-2026/scam-2026-research-track" target="_blank">
+              <img src="SCAM2026.png" alt="">
+              <span>SCAM 2026</span>
+            </a>
+
+            <a class="link-item" href="https://conf.researchr.org/track/cibse-2026/cibse-2026-cibse-2026--main-track-" target="_blank">
+              <img src="CIBSE2026.png" alt="">
+              <span>CIBSE 2026</span>
+            </a>
+
+            <a class="link-item" href="https://cbsoft.sbc.org.br/2026/pt/symposiums/sbes/pesquisa/call/" target="_blank">
+              <img src="cbsoft2026.png" alt="">
+              <span>SBES 2026- Technical+Education</span>
+            </a>
+
+            <a class="link-item" href="https://cbsoft.sbc.org.br/2026/pt/symposiums/sast/call/" target="_blank">
+              <img src="cbsoft2026.png" alt="">
+              <span>SAST 2026</span>
+            </a>
+
+            <a class="link-item" href="https://sbqs.sbc.org.br/2026/index.php/" target="_blank">
+              <img src="SBQS2026.png" alt="">
+              <span>SBQS 2026</span>
+            </a>
+
+            <a class="link-item" href="https://www.virtus.ufcg.edu.br/iseworkshop/" target="_blank">
+              <img src="ise2026.png" alt="">
+              <span>ISE 2026</span>
+            </a>
+
+            <a class="link-item" href="https://sbsi.sbc.org.br/2026/chamada-pesquisa.php" target="_blank">
+              <img src="SBSI2026.png" alt="">
+              <span>SBSI 2026</span>
+            </a>
+
+            <a class="link-item" href="https://csbc.sbc.org.br/2026/washes/" target="_blank">
+              <img src="CSBC2026.png" alt="">
+              <span>WASHES 2026</span>
+            </a>
+
+            <a class="link-item" href="https://csbc.sbc.org.br/2026/wei/" target="_blank">
+              <img src="CSBC2026.png" alt="">
+              <span>WEI 2026</span>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="card side-card">
+        <div class="card-header"><h2>Current Students</h2></div>
+        <div class="card-body">
+          André Gheventer (DSc, 2024), Patrícia Gurgel (DSc, 2024), Lidvaldo Santos (DSc, 2023), Adriano de Souza (DSc, 2022), Pablo de Oliveira (Msc, 2026), Júlio César Guimarães (MSc, 2024), Alexandre Cysne Esteves (MSc, 2024), Wesley Mota Gomes (MSc, 2024), Luis Cláudio Moraes (MSc, 2024), Anna Cristina Alves (Und. Res., 2025)</p>
+        </div>
+      </section>
+
+      <section class="card side-card">
+        <div class="card-header"><h2>Former Students</h2></div>
+        <div class="card-body">
+          Patrick Helder Belém (DSc, 2020-2026), João Lucas Correa (DSc, 2021-2025), Leonardo Chagas da Silva (MSc, 2023-2025), Bruno Lemos Barroso (MSc, 2023-2025), Diego Andé Cerqueira (MSc, 2019-2024), André Moabson (MSc, 2020-2022), João Lucas Correa (MSc, 2019-2021), Matheus Ávila de Lima (Und. Res.), Luiz Felipi Junionello (Und. Res.), Bruna Capistrano (Und. Res.), Pedro Correa da Silva (Und. Res.)</p>
+        </div>
+      </section>
+
+      <section class="card side-card">
+        <div class="card-header"><h2>Awards</h2></div>
+        <div class="card-body">
+          <ul class="award-list">
+            <li>2026 – Best Doctoral Thesis, CBSOFT/CTD-ES</li>
+            <li>2026 – Distinguised paper, CBSOFT/ISE</li>
+            <li>2025 – Distinguised paper, CBSOFT/SAST</li>
+            <li>2024 – 2nd Best Paper Award, CSBC/WASHES</li>
+            <li>2024 – 1st Best Paper Award, CSBC/WEI</li>
+            <li>2024 – ACM SIGSOFT Distinguished Paper Award, FSE</li>
+            <li>2024 – Distinguished Reviewer, CBSOFT/SBES</li>
+            <li>2023 – Best Paper Award, CSBC-WASHES</li>
+            <li>2023 – Award Paper, CBSOFT/SBES</li>
+            <li>2021 – 1st Best Paper Award, XXIV CIBSE</li>
+            <li>2018 – Distinguished Paper, ICSE</li>
+            <li>2014 – 1st Best Paper Award, CIBSE/ESELAW</li>
+            <li>2014 – 1st Best Short Paper Award, ESEM</li>
+            <li>2013 – Best New Idea and Research Proposal Award, EASE</li>
+            <li>2012 – 3rd Best Full Paper Award, SBCARS</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card side-card">
+        <div class="card-header"><h2>Links</h2></div>
+        <div class="card-body">
+          <ul class="quick-links">
+            <li><a href="https://scholar.google.com.br/citations?user=DVItni0AAAAJ&hl=pt-BR">Google Scholar</a></li>
+            <li><a href="http://lattes.cnpq.br/5514393713941443">Curriculum Lattes</a></li>
+            <li><a href="https://www.linkedin.com/in/rafael-maiani-de-mello-87272122/">LinkedIn profile</a></li>
+          </ul>
+        </div>
+      </section>
+
+    </aside>
+
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Rafael Maiani de Mello
+</footer>
+
+<button id="topBtn" aria-label="Voltar ao topo" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+
+</body>
+</html>
