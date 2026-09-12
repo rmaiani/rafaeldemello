@@ -105,23 +105,32 @@
 .eyebrow {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  align-items: center;
+  gap: 10px 18px;
+  margin: 0 0 10px;
+  color: var(--teal-dark);
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
 }
 
 .eyebrow span {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  white-space: nowrap;
+  gap: 8px;
 }
 
-.eyebrow i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  margin-right: 7px;
+.eyebrow span::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: var(--yellow);
+  transform: rotate(45deg);
+  flex-shrink: 0;
 }
-
+  
   h1, h2, h3 {
     font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
   }
